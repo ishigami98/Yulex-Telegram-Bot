@@ -1,8 +1,9 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, ConversationHandler, MessageHandler, filters
+from telegram.ext import ApplicationBuilder, CallbackQueryHandler, CommandHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 
 from Controllers.TodoController import TodoController
-from Controllers.UserProfileController import user_profile_controller_conversation_handler, UserProfileController
+from Controllers.UserProfileController import (user_profile_controller_conversation_handler, add_user_conversation_handler, UserProfileController, callback_handler, delete_callback_handler)
+
 
 # Token de acceso al bot
 TOKEN = "7325840280:AAEQZOue7G0OiPBByeuSiClORaiwLK5bsUk"
@@ -53,7 +54,31 @@ async def thank_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Construcción de la aplicación del bot
 application = ApplicationBuilder().token(TOKEN).build()
 
+# Agrega manejadores para los callback queries (botones)
+async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    command = query.data
+
+    command_map = {
+        '/profile': UserProfileController.starting_get_info,
+        '/add_user': UserProfileController.start_adding_user,
+        '/select_user': UserProfileController.select_user,
+        '/view_users': UserProfileController.view_users,
+        '/create_list': TodoController.create_task_list,
+        '/select_list': TodoController.select_task_list,
+        '/add': TodoController.add_todo,
+        '/list': TodoController.list_todos,
+        '/check': TodoController.check_todo,
+        '/clear': TodoController.clear_todos,
+    }
+
+    if command in command_map:
+        await command_map[command](update, context)
+    else:
+        await context.bot.send_message(chat_id=query.message.chat_id, text=f"Comando no encontrado: {command}")
+
 # Registrando comandos en el bot
+application.add_handler(CallbackQueryHandler(button_handler))
 application.add_handler(CommandHandler("start", start))
 application.add_handler(CommandHandler("help", help))
 application.add_handler(CommandHandler("create_list", TodoController.create_task_list))
@@ -63,14 +88,22 @@ application.add_handler(CommandHandler("list", TodoController.list_todos))
 application.add_handler(CommandHandler("check", TodoController.check_todo))
 application.add_handler(CommandHandler("clear", TodoController.clear_todos))
 
-application.add_handler(CommandHandler("select_user", UserProfileController.select_user))
-application.add_handler(CommandHandler("view_users", UserProfileController.view_users))
-application.add_handler(CommandHandler("delete_user", UserProfileController.delete_user))
-application.add_handler(CommandHandler("add_user", UserProfileController.add_user))
+application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^Hola$"), greet_user))
+application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^Gracias$"), thank_user))
 
+# Añade los handlers
 application.add_handler(user_profile_controller_conversation_handler)
+application.add_handler(callback_handler)
+application.add_handler(delete_callback_handler)
+application.add_handler(add_user_conversation_handler)
 
-application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^hola$"), greet_user))
-application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^gracias$"), thank_user))
+# Añade más CommandHandlers si es necesario
+application.add_handler(CommandHandler("view_users", UserProfileController.view_users))
+application.add_handler(CommandHandler("select_user", UserProfileController.select_user))
+application.add_handler(CommandHandler("delete_user", UserProfileController.delete_user))
 
+# Añade el handler al bot
+application.add_handler(add_user_conversation_handler)
+
+# Corre el bot
 application.run_polling(allowed_updates=Update.ALL_TYPES)
