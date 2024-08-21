@@ -16,7 +16,7 @@ Este bot está diseñado para ayudarlo a administrar sus listas de tareas de man
 
 ---
 
-### 📋 Commands
+### 📋 Comandos
 
 - `/help` - Información de los comandos.
 - `/profile` - Crear perfil de usuario.
@@ -53,9 +53,12 @@ Para instalar y ejecutar Yulex Bot, siga estos pasos:
 4. Ejecutar el bot:
    python main.py
 
+---
 
-👥 Contribuyendo
+### 👥 Contribuyendo
 Siéntete libre de contribuir a este proyecto enviando problemas o solicitudes de incorporación de cambios. Para cambios importantes, primero abre un problema para analizar lo que te gustaría cambiar.
 
-📄 Licencia
+---
+
+### 📄 Licencia
 Este proyecto está licenciado bajo la licencia MIT: consulte el archivo de LICENCIA para obtener más detalles.
