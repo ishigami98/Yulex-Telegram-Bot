@@ -2,7 +2,7 @@
 
 ### 🛠️ ¿Qué puede hacer este bot?
 
-Este bot está diseñado para ayudarlo a administrar sus tareas y perfiles de usuario de manera eficiente. Ya sea que esté realizando un seguimiento de sus tareas pendientes o administrando varios usuarios, Yulex Bot lo tiene cubierto.
+Este bot está diseñado para ayudarlo a administrar sus listas de tareas de manera eficiente. Ya sea que esté realizando un seguimiento de sus tareas pendientes, Yulex Bot lo tiene cubierto.
 
 ---
 
@@ -18,21 +18,25 @@ Este bot está diseñado para ayudarlo a administrar sus tareas y perfiles de us
 
 ### 📋 Commands
 
-- `/start` - Start the bot and see this welcome message.
-- `/add_todo [task name]` - Add a new task to your list.
-- `/list_todos` - Show your to-do list.
-- `/add_user [username]` - Add a new user profile.
-- `/list_users` - View the list of all user profiles.
-- `/select_user [username]` - Select the active user profile.
-- `/delete_user [username]` - Remove a user profile from the bot.
+- `/help` - Información de los comandos.
+- `/profile` - Crear perfil de usuario.
+- `/add_user` - Añadir un nuevo usuario.
+- `/select_user` - Seleccionar usuario.
+- `/view_users` - Ver usuarios disponibles.
+- `/create_list [nombre]` - Crear lista de tareas.
+- `/select_list [nombre]` - Seleccionar lista de tareas.
+- `/add [tarea]` - Añadir tarea.
+- `/list` - Ver tareas.
+- `/check [número]` - Marcar tarea como completada.
+- `/clear` - Borrar todas las tareas.
 
 ---
 
-### 💻 Installation
+### 💻 Instalación.
 
-To install and run Yulex Bot, follow these steps:
+Para instalar y ejecutar Yulex Bot, siga estos pasos:
 
-1. Clone the repository:
+1. Clone el repositorio:
 
    ```bash
    git clone https://github.com/ishigami98/Yulex-Telegram-Bot.git
@@ -44,7 +48,7 @@ To install and run Yulex Bot, follow these steps:
    pip install -r requirements.txt
 
 3. Configura tu token de bot de Telegram:
-   Obtén tu token de bot de BotFather y agrégalo al main.pyarchivo.
+   Obtén tu token de bot de BotFather y agrégalo al archivo main.py.
 
 4. Ejecutar el bot:
    python main.py
