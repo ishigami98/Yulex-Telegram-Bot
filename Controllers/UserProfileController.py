@@ -146,8 +146,6 @@ add_user_conversation_handler = ConversationHandler(
 )
 
 # Callback handler para manejar la selección de usuario
-
-# Callback handler para manejar la selección de usuario
 callback_handler = CallbackQueryHandler(UserProfileController.handle_selection, pattern="select_")
 
 # Callback handler para manejar la eliminación de usuario
