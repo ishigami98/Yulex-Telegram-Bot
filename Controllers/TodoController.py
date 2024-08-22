@@ -99,6 +99,6 @@ class TodoController:
     async def clear_todos(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if todos:
             todos.clear()
-            await update.message.reply_text("Todas las tareas han sido eliminadas.")
+            await update.message.reply_text("La lista de tareas ha sido eliminada.")
         else:
-            await update.message.reply_text("No hay tareas para eliminar.")
+            await update.message.reply_text("No hay lista de tareas para eliminar.")
