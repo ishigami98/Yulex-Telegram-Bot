@@ -28,7 +28,7 @@ Este bot está diseñado para ayudarlo a administrar sus listas de tareas de man
 - `/add [tarea]` - Añadir tarea.
 - `/list` - Ver tareas.
 - `/check [número]` - Marcar tarea como completada.
-- `/clear` - Borrar todas las tareas.
+- `/clear` - Borrar toda la lista de tarea actual.
 
 ---
 
