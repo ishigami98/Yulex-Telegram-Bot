@@ -5,7 +5,7 @@ from Controllers.TodoController import TodoController
 from Controllers.UserProfileController import ( user_profile_controller_conversation_handler, add_user_conversation_handler, UserProfileController, callback_handler, delete_callback_handler)
 
 # Token de acceso al bot
-TOKEN = "7325840280:AAEQZOue7G0OiPBByeuSiClORaiwLK5bsUk"
+TOKEN = "---"
 
 # Función de inicio
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
